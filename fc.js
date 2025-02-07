@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }, {
-        threshold: 0.3 // Trigger when 30% of element is visible
+        threshold: 0.3 
     });
 
     floatingElements.forEach(element => {
@@ -40,11 +40,57 @@ document.addEventListener("DOMContentLoaded", function () {
             if (position < windowHeight * 0.85) {
                 element.classList.add('active');
             } else {
-                element.classList.remove('active'); // Remove when scrolling up
+                element.classList.remove('active'); 
             }
         });
     }
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Trigger on load for already visible elements
+    handleScroll(); 
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+            const navbar = document.querySelector(".navbar-container");
+            const pageWrapper = document.getElementById("page-wrapper");
+
+            const totalAnimationTime = 4600; 
+    
+            setTimeout(() => {       
+                navbar.classList.add("show");
+                pageWrapper.classList.add("show");
+
+                document.body.style.overflow = "auto";
+            }, totalAnimationTime);
+
+            animationPlayed = true; 
+
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "visible" && !animationPlayed) {
+            playHeroAnimation();
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+   
+    const fadeInElements = document.querySelectorAll(".fade-in-up");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+               
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.1,
+    });
+
+    
+    fadeInElements.forEach((element) => {
+        observer.observe(element);
+    });
 });
