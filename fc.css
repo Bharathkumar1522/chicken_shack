@@ -901,6 +901,15 @@ ul{
 	color: #24262b;
 	background-color: #ffffff;
 }
+.copy-right{
+    background-color: #0000007e;
+    width: 100%;
+    text-align: center;
+    align-self: baseline;
+    bottom: 0;
+    color: #ffffff;
+    font-weight: 600;
+}
 
 /*responsive*/
 @media(max-width: 767px){
