@@ -556,8 +556,6 @@ html {
     background-size: cover;
     overflow: hidden; /* Prevent scrollbars if content overflows */
     padding: 5%;
-    max-width: 100%;
-    overflow: hidden;
 }
 
 .interior-sec::before {
@@ -596,9 +594,6 @@ html {
 }
 
 @media(max-width:768px){
-    .interior-sec {
-        background-attachment: scroll; /* Fallback for mobile */
-    }
     .scrolling-content h1 {
         font-size: 2.8rem; 
     }
