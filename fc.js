@@ -73,14 +73,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-   
+document.addEventListener("DOMContentLoaded", function () { 
     const fadeInElements = document.querySelectorAll(".fade-in-up");
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-               
                 entry.target.classList.add("active");
                 observer.unobserve(entry.target); 
             }
@@ -92,5 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
     
     fadeInElements.forEach((element) => {
         observer.observe(element);
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("myVideo");
+    const loadingSpinner = document.getElementById("loadingSpinner");
+
+    video.addEventListener("canplaythrough", () => {
+        loadingSpinner.style.display = "none"; // Hide the spinner
+        document.getElementById("page-wrapper").classList.add("show"); // Show the content
     });
 });

@@ -1,21 +1,8 @@
-
-
-/* Keyframes for Fade-In-Up Animation */
-@keyframes fadeBounceUp {
-    0% {
-        opacity: 0;
-        transform: translateY(60px);
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
-
+/* Keyframes for Fade-In-Up Animation */
 @keyframes fadeInUp {
     0% {
         transform: translateY(100%);
@@ -109,39 +96,13 @@
         transform: translateY(0);
     }
 }
-
-@keyframes fadeBounceLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-60px);
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateX(10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.fade-in-up, .fade-in-left, .fade-in-right {
+    opacity: 0;
+    transform: translateY(40px);
+    visibility: hidden;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, visibility 0.8s ease-out;
+    will-change: opacity, transform, visibility; /* Improve performance */
 }
-
-@keyframes fadeBounceRight {
-    0% {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateX(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-
 /* All styles */
 
 body {
@@ -154,6 +115,7 @@ body {
 
 html {
     height: 100%;
+    
 }
 
 /* reused styles */
@@ -198,7 +160,6 @@ html {
 }
 
 .navbar-container {
-    width: 99%;
     margin: 10px 20px 10px 7px;
     z-index: 1;
     padding: 0.7rem;
@@ -210,6 +171,8 @@ html {
     font-weight: 600;
     background-color: transparent; /* Transparent background */
     position: relative; /* For positioning hamburger menu */
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .logo {
@@ -279,59 +242,6 @@ html {
     
 }
 
-.munch-button {
-    font-size: 17px;
-    /* letter-spacing: 2px; */
-    display: inline-block;
-    text-align: center;
-    font-weight: bold;
-    font-family: "Poppins";
-    padding: 0.9em 1.4em;
-    border: 2px solid #ffffff;
-    border-radius: 2px;
-    position: relative;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
-    color: #ffffff;
-    text-decoration: none;
-    transition: 0.3s ease all;
-    z-index: 1;
-    background-color: transparent;
-    opacity: 0;
-    margin-top: 2.6rem;
-    animation: 2.7s ease 2.2s fadeInUpBtn forwards;
-    border-radius: 3rem;
-}
-
-.munch-button:before {
-transition: 0.3s all ease;
-position: absolute;
-top: 0;
-left: 50%;
-right: 50%;
-bottom: 0;
-opacity: 0;
-content: '';
-background-color: rgb(255, 149, 0);
-z-index: -1;
-border-radius: 3rem;
-}
-
-.munch-button:hover, .munch-button:focus {
-color: rgb(0, 0, 0);
-border-radius: 3rem;
-border: 5px solid transparent;
-}
-
-.munch-button:hover:before, .munch-button:focus:before {
-transition: 0.3s all ease;
-left: 0;
-right: 0;
-opacity: 1;
-}
-
-.munch-button:active {
-transform: scale(1.5);
-}
 
 
 @media (max-width: 768px) {
@@ -385,6 +295,8 @@ transform: scale(1.5);
     text-align: center;
     position: relative;
     z-index: -999;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .image-font-design{
@@ -497,18 +409,6 @@ transform: scale(1.5);
         height: 320px;
         margin-top: 40px;
     }
-    .chicken-1:hover{
-        height: 350px !important;
-        
-    }
-    .chicken-3{
-        height: 320px;
-        margin-top: 40px;
-    }
-    .chicken-3:hover{
-        height:350px ;
-        
-    }
     .font-chicken{
         color: rgb(255, 255, 255);
         font-size: 1.5rem;
@@ -516,10 +416,6 @@ transform: scale(1.5);
         text-shadow: 2px 2px 2px rgba(24, 24, 24, 0.784);
         margin: 5px;
         font-family: "Pacifico"; 
-        /* background-image: linear-gradient(180deg,#fff06b,#fff06b);
-        background-repeat: no-repeat;
-        background-position: 2px bottom;
-        background-size: 100% 10px; */
         text-decoration: none;
     
         }
@@ -538,8 +434,9 @@ transform: scale(1.5);
 
 .our-menu{
     background-image: radial-gradient(circle, #f6c530, #e6b22f, #d5a02d, #c48f2c, #b27e2a);
-    width: 100%;
     padding: 7%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .desc-menu{
@@ -659,6 +556,8 @@ transform: scale(1.5);
     background-size: cover;
     overflow: hidden; /* Prevent scrollbars if content overflows */
     padding: 5%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .interior-sec::before {
@@ -697,6 +596,9 @@ transform: scale(1.5);
 }
 
 @media(max-width:768px){
+    .interior-sec {
+        background-attachment: scroll; /* Fallback for mobile */
+    }
     .scrolling-content h1 {
         font-size: 2.8rem; 
     }
@@ -712,7 +614,8 @@ transform: scale(1.5);
 
 .chef-section{
     background-image: radial-gradient(circle, #f6c530, #e6b22f, #d5a02d, #c48f2c, #b27e2a);
-    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     padding-top: 5%;
 }
 
@@ -810,7 +713,8 @@ transform: scale(1.5);
     background-image: url("./chicken-img/footerimage.jpg");
     background-size: cover;
     background-position: center;
-    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     padding: 5% 0%;
     z-index: 1; /* Ensure it sits above the overlay */
     color: white; /* Optional: Makes the text more readable */
@@ -937,8 +841,3 @@ ul{
        
     }
 }
-
-
-
-
-
