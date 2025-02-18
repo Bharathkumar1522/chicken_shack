@@ -539,7 +539,7 @@ body {
 .interior-sec {
     position: relative; /* Ensure pseudo-element is positioned relative to this container */
     height: 100vh; /* Full viewport height */
-    background-image: url("./chicken-img/interior-img.webp");
+    background-image: url("/chicken-img/interior-img.webp");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -695,7 +695,7 @@ body {
 
 .footer-image {
     position: relative; /* Make the container a positioned element */
-    background-image: url("./chicken-img/footerimage.jpg");
+    background-image: url("/chicken-img/footerimage.jpg");
     background-size: cover;
     background-position: center;
     max-width: 100%;
