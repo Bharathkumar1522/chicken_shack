@@ -14,7 +14,7 @@ return (
         </p>
         <h4 className="final-msg">Be my guest today!</h4>
     </div>
-    <img src="../../public/chicken-img/chef.png" className="chef-img" alt="Chef" />
+    <img src="/chicken-img/chef.png" className="chef-img" alt="Chef" />
     </div>
 </section>
 );
