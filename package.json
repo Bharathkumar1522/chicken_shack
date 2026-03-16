@@ -5,28 +5,25 @@
   "type": "module",
   "homepage": "https://your-username.github.io/chicken_shack",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.14.2",
+    "lenis": "^1.3.18",
+    "lucide-react": "^0.577.0",
+    "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
+    "@eslint/eslintrc": "^3",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.19.0",
-    "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.18",
-    "gh-pages": "^6.3.0",
-    "globals": "^15.14.0",
-    "vite": "^6.1.0"
+    "eslint-config-next": "15.1.0"
   }
 }

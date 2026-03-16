@@ -1,0 +1,582 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/styles/styles.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+
+/* =========================================================================
+   VARIABLES & DESIGN SYSTEM
+========================================================================= */
+:root {
+  --bg-color: #0c0c0c;
+  --bg-color-glass: rgba(12, 12, 12, 0.4);
+  --text-main: #fcfcfc;
+  --text-muted: #9a9a9a;
+  --accent: #FF5E00; /* Spicy Orange */
+  --accent-light: #FF8F4D;
+  --accent-glow: rgba(255, 94, 0, 0.4);
+
+  --font-heading: 'Clash Display', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(4rem, 10vw, 8rem);
+  --container-width: 1400px;
+}
+
+/* =========================================================================
+   RESET & FOUNDATION
+========================================================================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* =========================================================================
+   LENIS SMOOTH SCROLL REQUIRED STYLES
+========================================================================= */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* =========================================================================
+   LAYOUT STRUCTURE
+========================================================================= */
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+#canvas-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Let clicks pass through to content */
+}
+
+/* ── Animated ambient glow orbs inside canvas container ── */
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  /* Blur removed for 60fps performance - Relying entirely on radial-gradient fading */
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+.bg-glow--left {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(200, 50, 0, 0.35) 0%, transparent 70%);
+  top: 15%;
+  left: -8%;
+  animation: glow-drift-left 9s ease-in-out infinite alternate;
+}
+
+.bg-glow--right {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 130, 0, 0.25) 0%, transparent 70%);
+  top: 30%;
+  right: -10%;
+  animation: glow-drift-right 12s ease-in-out infinite alternate;
+}
+
+.bg-glow--bottom {
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(160, 20, 0, 0.30) 0%, transparent 70%);
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: glow-pulse-bottom 7s ease-in-out infinite alternate;
+}
+
+@keyframes glow-drift-left {
+  0%   { transform: translate(0,   0)   scale(1);    opacity: 0.6; }
+  50%  { transform: translate(4%, 12%)  scale(1.1);  opacity: 0.9; }
+  100% { transform: translate(-3%, 6%)  scale(0.95); opacity: 0.7; }
+}
+
+@keyframes glow-drift-right {
+  0%   { transform: translate(0,    0)   scale(1);    opacity: 0.5; }
+  50%  { transform: translate(-5%, -8%)  scale(1.15); opacity: 0.85; }
+  100% { transform: translate(3%, 10%)   scale(0.9);  opacity: 0.65; }
+}
+
+@keyframes glow-pulse-bottom {
+  0%   { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  100% { opacity: 0.85; transform: translateX(-50%) scale(1.12); }
+}
+
+
+
+.content-layer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  pointer-events: none; /* We will re-enable clicks on interactive elements */
+}
+
+/* Allow interaction on content layer elements explicitly */
+.content-layer > * {
+  pointer-events: auto;
+}
+
+
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--section-padding) 5vw;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* =========================================================================
+   TYPOGRAPHY
+========================================================================= */
+h1, h2, h3, h4, h5, h6, .heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.title-massive {
+  font-size: clamp(4rem, 12vw, 15rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.title-large {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-body {
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* =========================================================================
+   UTILITIES & EFFECTS
+========================================================================= */
+.glass-panel {
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  background-color: var(--accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-main);
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-primary:hover {
+  color: #000;
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.btn-primary:hover::after {
+  transform: scaleY(1);
+}
+
+/* Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+/* =========================================================================
+   MARQUEE (PageContent ticker divider)
+========================================================================= */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* =========================================================================
+   VARIANT CARD hover transition
+========================================================================= */
+.vc-img {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* =========================================================================
+   RESPONSIVE — DESKTOP ONLY (hide desktop nav links on mobile)
+========================================================================= */
+@media (max-width: 768px) {
+  /* Hide desktop nav links — only hamburger + logo visible */
+  .nav-desktop-links {
+    display: none !important;
+  }
+}
+
+/* =========================================================================
+   RESPONSIVE — TABLET (≤1024px)
+========================================================================= */
+@media (max-width: 1024px) {
+  /* Reduce section padding */
+  section {
+    padding: 6rem 6vw;
+  }
+
+  /* Chef section: stack to one column */
+  #chefSec > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Interior: reduce minimum height */
+  #interiorSec {
+    min-height: 70vh !important;
+    padding: 4rem 6vw !important;
+  }
+}
+
+/* =========================================================================
+   RESPONSIVE — MOBILE (≤768px)
+========================================================================= */
+@media (max-width: 768px) {
+  /* Global section spacing */
+  section {
+    padding: 5rem 5vw;
+    min-height: unset !important;
+  }
+
+  /* ── Menu section: becomes scrollable list on mobile ── */
+  .menu-section {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 5rem 5vw !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 2rem;
+  }
+
+  /* Cards: switch from absolute-stacked to relative-flowing */
+  .menu-section .menu-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    border-radius: 1.6rem !important;
+    overflow: hidden !important;
+  }
+
+  /* Image container: full width, 240px tall, cover on mobile */
+  .menu-section .menu-card > div:last-child {
+    width: 100% !important;
+    height: 240px !important;
+    flex: none !important;
+    order: -1 !important; /* Image FIRST */
+  }
+
+  /* Image fills its container */
+  .menu-section .menu-card .card-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    filter: none !important;
+  }
+
+  /* Text content: normal flow below image */
+  .menu-section .menu-card .card-text-content {
+    flex: none !important;
+    padding: 2rem 1.8rem 2.5rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Giant number: hide on mobile */
+  .menu-section .giant-num {
+    display: none !important;
+  }
+
+  /* The cards wrapper: stack vertically */
+  .menu-section > div {
+    position: relative !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 2rem;
+  }
+
+  /* Typography scale down */
+  .title-massive {
+    font-size: clamp(3rem, 16vw, 6rem) !important;
+  }
+
+  .title-large {
+    font-size: clamp(2.4rem, 11vw, 4rem) !important;
+  }
+
+  .text-body {
+    font-size: 1rem !important;
+  }
+
+  /* Hero: tighten centering */
+  #heroSec {
+    height: 100svh !important;
+  }
+
+  /* PageContent: reduce top padding */
+  #pageContent {
+    padding-top: 5rem !important;
+  }
+
+  /* PageContent cards: single column */
+  #pageContent .variant-grid,
+  [class*="variant"] > div {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+  }
+
+  /* HungerStrip grid: 2 col max */
+  .hs-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  /* Chef: single column stack */
+  #chefSec > div:last-child {
+    grid-template-columns: 1fr !important;
+    direction: ltr;
+  }
+
+  #chefSec .chef-bio-col {
+    padding: 2rem 5vw 4rem !important;
+  }
+
+  /* Chef image: reduce height on mobile */
+  #chefSec .chef-image-wrap img {
+    max-height: 55vh !important;
+  }
+
+  /* Stats row: smaller text */
+  #chefSec .chef-stat-num {
+    font-size: 2rem !important;
+  }
+
+  /* Footer: single column */
+  #footerSec .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Hide large decorative ingredients on small screens */
+  .floating-ingredient {
+    opacity: 0.4 !important;
+    width: 70px !important;
+  }
+
+  /* Interior text centering */
+  #interiorSec {
+    min-height: 70vh !important;
+  }
+
+  /* Hero text: ensure it never overflows on mobile */
+  #heroSec h1.title-massive,
+  #heroSec h1 {
+    font-size: clamp(2.4rem, 13vw, 6rem) !important;
+  }
+
+  /* VariantCard: always single column on mobile with image on top */
+  .vc-card {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    min-height: unset !important;
+    padding: 3rem 5vw !important;
+  }
+
+  /* Force image col always appears first (row 1) on mobile */
+  .vc-img-col {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  /* Force text col always appears second (row 2) on mobile */
+  .vc-text-col {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+  }
+
+  /* Shrink the glow behind card image on mobile */
+  .vc-img-col > div > div {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+/* =========================================================================
+   RESPONSIVE — SMALL MOBILE (≤480px)
+========================================================================= */
+@media (max-width: 480px) {
+  .title-massive {
+    font-size: clamp(2.5rem, 18vw, 4.5rem) !important;
+  }
+
+  /* HungerStrip: single column on very small screens */
+  .hs-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer: single column */
+  #footerSec .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Chef stats: wrap */
+  #chefSec .chef-detail-item > div {
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Navbar pill: ensure it doesn't overflow on very small screens */
+  nav[style*="border-radius: 50px"] {
+    gap: 1.5rem !important;
+    padding: 0.6rem 1.2rem !important;
+  }
+
+  /* Hide floating ingredients on very small screens */
+  .floating-ingredient {
+    display: none !important;
+  }
+
+  /* PERFORMANCE: Remove expensive backdrop-filter on mobile */
+  .glass-panel {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(15, 15, 15, 0.92) !important;
+  }
+
+  /* Menu section */
+  #menuSec {
+    padding: 5rem 5vw !important;
+  }
+}
+
+/* =========================================================================
+   REDUCED MOTION + LOW-END DEVICE PERFORMANCE
+========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .bg-glow {
+    animation: none !important;
+  }
+}
+
+/* GPU acceleration for animated elements —
+   compositing layer hints for the browser.
+   Only apply to known animated elements to avoid memory bloat. */
+.hero-bg-video video,
+.floating-ingredient,
+.menu-card,
+.vc-card,
+.card-img,
+.vc-img {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Mobile: remove heavy will-change (causes extra memory overhead on low-end phones) */
+@media (max-width: 768px) {
+  .floating-ingredient,
+  .hero-bg-video video {
+    will-change: auto;
+  }
+}
